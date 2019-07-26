@@ -15,11 +15,9 @@ COPY --from=builder /src/yggdrasilctl /usr/bin/yggdrasilctl
 COPY contrib/docker/alpine/entrypoint.sh /usr/bin/entrypoint.sh
 
 # RUN addgroup -g 1000 -S yggdrasil-network \
-#  && adduser -u 1000 -S -g 1000 --home /etc/yggdrasil-network yggdrasil-network
+#  && adduser -u 1000 -S -g 1000 yggdrasil-network
 #
 # USER yggdrasil-network
 # TODO: Make running unprivileged work
-
-VOLUME [ "/etc/yggdrasil-network" ]
 
 ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]

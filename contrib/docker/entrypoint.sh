@@ -2,14 +2,14 @@
 
 set -e
 
-CONF_DIR="/etc/yggdrasil-network"
+CONF_DIR=${CONF_DIR:-/etc}
 
-mkdir -p $CONF_DIR
+mkdir -p ${CONF_DIR}
 
-if [ ! -f "$CONF_DIR/config.conf" ]; then
-  echo "generate $CONF_DIR/config.conf"
-  yggdrasil --genconf > "$CONF_DIR/config.conf"
+if [ ! -f "${CONF_DIR}/yggdrasil.conf" ]; then
+  echo "generate ${CONF_DIR}/yggdrasil.conf"
+  yggdrasil --genconf > "${CONF_DIR}/yggdrasil.conf"
 fi
 
-yggdrasil --useconf < "$CONF_DIR/config.conf"
+yggdrasil --useconffile "${CONF_DIR}/yggdrasil.conf"
 exit $?
